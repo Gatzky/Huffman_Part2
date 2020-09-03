@@ -2,23 +2,72 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Thu Sep  3 10:41:53 2020
-# Process ID: 7292
-# Current directory: C:/Gac/Projekty/ip_repo
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2856 C:\Gac\Projekty\ip_repo\edit_Huffman_IP_v1_0.xpr
-# Log file: C:/Gac/Projekty/ip_repo/vivado.log
-# Journal file: C:/Gac/Projekty/ip_repo\vivado.jou
+# Start of session at: Thu Sep  3 12:58:22 2020
+# Process ID: 1056
+# Current directory: C:/Gac/Projekty/Huffman_Part2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1640 C:\Gac\Projekty\Huffman_Part2\edit_Huffman_IP_v1_0.xpr
+# Log file: C:/Gac/Projekty/Huffman_Part2/vivado.log
+# Journal file: C:/Gac/Projekty/Huffman_Part2\vivado.jou
 #-----------------------------------------------------------
 start_gui
-open_project C:/Gac/Projekty/ip_repo/edit_Huffman_IP_v1_0.xpr
-WARNING: [filemgmt 56-99] Vivado Synthesis ignores library specification for Verilog or SystemVerilog files. [C:/Gac/Projekty/ip_repo/Huffman_IP_1.0/hdl/Huffman_IP_v1_0_S00_AXI.v:]
-WARNING: [filemgmt 56-99] Vivado Synthesis ignores library specification for Verilog or SystemVerilog files. [C:/Gac/Projekty/ip_repo/Huffman_IP_1.0/hdl/Huffman_IP_v1_0.v:]
+open_project C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.xpr
+INFO: [Project 1-313] Project file moved from 'c:/gac/projekty/ip_repo' since last save.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Gac/Projekty/ip_repo/Huffman_IP_1.0'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
-open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 973.516 ; gain = 85.965
+WARNING: [IP_Flow 19-3664] IP 'mb_design_Huffman_IP_0_0' generated file not found 'c:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ip/mb_design_Huffman_IP_0_0/mb_design_Huffman_IP_0_0.dcp'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'mb_design_Huffman_IP_0_0' generated file not found 'c:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ip/mb_design_Huffman_IP_0_0/mb_design_Huffman_IP_0_0_stub.v'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'mb_design_Huffman_IP_0_0' generated file not found 'c:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ip/mb_design_Huffman_IP_0_0/mb_design_Huffman_IP_0_0_stub.vhdl'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'mb_design_Huffman_IP_0_0' generated file not found 'c:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ip/mb_design_Huffman_IP_0_0/mb_design_Huffman_IP_0_0_sim_netlist.v'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'mb_design_Huffman_IP_0_0' generated file not found 'c:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ip/mb_design_Huffman_IP_0_0/mb_design_Huffman_IP_0_0_sim_netlist.vhdl'. Please regenerate to continue.
+open_project: Time (s): cpu = 00:00:16 ; elapsed = 00:00:08 . Memory (MB): peak = 813.949 ; gain = 169.691
 update_compile_order -fileset sources_1
+generate_target all [get_files  C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd]
+Wrote  : <C:\Gac\Projekty\Huffman_Part2\edit_Huffman_IP_v1_0.srcs\sources_1\bd\mb_design\mb_design.bd> 
+VHDL Output written to : C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/synth/mb_design.v
+VHDL Output written to : C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/sim/mb_design.v
+VHDL Output written to : C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/hdl/mb_design_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block processing_system7_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block Huffman_IP_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpio_inputData .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_gpio_outputData .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_uart16550_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_ps7_0_50M .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ip/mb_design_auto_pc_0/mb_design_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/s00_couplers/auto_pc .
+Exporting to file C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/hw_handoff/mb_design.hwh
+Generated Block Design Tcl file C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/hw_handoff/mb_design_bd.tcl
+Generated Hardware Definition File C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/synth/mb_design.hwdef
+generate_target: Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1069.453 ; gain = 166.344
+catch { config_ip_cache -export [get_ips -all mb_design_Huffman_IP_0_0] }
+catch { config_ip_cache -export [get_ips -all mb_design_axi_uart16550_0_1] }
+catch { config_ip_cache -export [get_ips -all mb_design_xbar_1] }
+catch { config_ip_cache -export [get_ips -all mb_design_rst_ps7_0_50M_1] }
+INFO: [IP_Flow 19-4993] Using cached IP synthesis design for IP mb_design_rst_ps7_0_50M_1, cache-ID = 4efc3bbe74d587a9; cache size = 3.048 MB.
+catch { config_ip_cache -export [get_ips -all mb_design_auto_pc_0] }
+INFO: [IP_Flow 19-4993] Using cached IP synthesis design for IP mb_design_auto_pc_0, cache-ID = de5e8fa01b9552af; cache size = 3.048 MB.
+export_ip_user_files -of_objects [get_files C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd]
+launch_runs -jobs 4 {mb_design_Huffman_IP_0_0_synth_1 mb_design_axi_uart16550_0_1_synth_1 mb_design_xbar_1_synth_1}
+[Thu Sep  3 12:59:07 2020] Launched mb_design_Huffman_IP_0_0_synth_1, mb_design_axi_uart16550_0_1_synth_1, mb_design_xbar_1_synth_1...
+Run output will be captured here:
+mb_design_Huffman_IP_0_0_synth_1: C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.runs/mb_design_Huffman_IP_0_0_synth_1/runme.log
+mb_design_axi_uart16550_0_1_synth_1: C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.runs/mb_design_axi_uart16550_0_1_synth_1/runme.log
+mb_design_xbar_1_synth_1: C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.runs/mb_design_xbar_1_synth_1/runme.log
+export_simulation -of_objects [get_files C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd] -directory C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.ip_user_files/sim_scripts -ip_user_files_dir C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.ip_user_files -ipstatic_source_dir C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/modelsim} {questa=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/questa} {riviera=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/riviera} {activehdl=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+open_bd_design {C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd}
+Adding component instance block -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding component instance block -- xilinx.com:user:Huffman_IP:1.0 - Huffman_IP_0
+Adding component instance block -- xilinx.com:ip:axi_gpio:2.0 - axi_gpio_inputData
+Adding component instance block -- xilinx.com:ip:axi_gpio:2.0 - axi_gpio_outputData
+Adding component instance block -- xilinx.com:ip:axi_uart16550:2.0 - axi_uart16550_0
+Adding component instance block -- xilinx.com:ip:axi_interconnect:2.1 - ps7_0_axi_periph
+Adding component instance block -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_0_50M
+Successfully read diagram <mb_design> from BD file <C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd>
 exit
-INFO: [Common 17-206] Exiting Vivado at Thu Sep  3 10:42:34 2020...
+INFO: [Common 17-206] Exiting Vivado at Thu Sep  3 13:00:41 2020...

@@ -2,13 +2,24 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Thu Sep  3 10:41:53 2020
-# Process ID: 7292
-# Current directory: C:/Gac/Projekty/ip_repo
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2856 C:\Gac\Projekty\ip_repo\edit_Huffman_IP_v1_0.xpr
-# Log file: C:/Gac/Projekty/ip_repo/vivado.log
-# Journal file: C:/Gac/Projekty/ip_repo\vivado.jou
+# Start of session at: Thu Sep  3 12:58:22 2020
+# Process ID: 1056
+# Current directory: C:/Gac/Projekty/Huffman_Part2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1640 C:\Gac\Projekty\Huffman_Part2\edit_Huffman_IP_v1_0.xpr
+# Log file: C:/Gac/Projekty/Huffman_Part2/vivado.log
+# Journal file: C:/Gac/Projekty/Huffman_Part2\vivado.jou
 #-----------------------------------------------------------
 start_gui
-open_project C:/Gac/Projekty/ip_repo/edit_Huffman_IP_v1_0.xpr
+open_project C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.xpr
 update_compile_order -fileset sources_1
+generate_target all [get_files  C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd]
+catch { config_ip_cache -export [get_ips -all mb_design_Huffman_IP_0_0] }
+catch { config_ip_cache -export [get_ips -all mb_design_axi_uart16550_0_1] }
+catch { config_ip_cache -export [get_ips -all mb_design_xbar_1] }
+catch { config_ip_cache -export [get_ips -all mb_design_rst_ps7_0_50M_1] }
+catch { config_ip_cache -export [get_ips -all mb_design_auto_pc_0] }
+export_ip_user_files -of_objects [get_files C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd]
+launch_runs -jobs 4 {mb_design_Huffman_IP_0_0_synth_1 mb_design_axi_uart16550_0_1_synth_1 mb_design_xbar_1_synth_1}
+export_simulation -of_objects [get_files C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd] -directory C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.ip_user_files/sim_scripts -ip_user_files_dir C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.ip_user_files -ipstatic_source_dir C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/modelsim} {questa=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/questa} {riviera=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/riviera} {activehdl=C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+open_bd_design {C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/mb_design.bd}

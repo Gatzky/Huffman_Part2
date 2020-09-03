@@ -50,6 +50,18 @@
   "../../../bd/mb_design/ip/mb_design_axi_gpio_0_0/sim/mb_design_axi_gpio_0_0.vhd" \
   "../../../bd/mb_design/ip/mb_design_axi_gpio_1_0/sim/mb_design_axi_gpio_1_0.vhd" \
 -endlib
+-makelib ies_lib/lib_pkg_v1_0_2 \
+  "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd" \
+-endlib
+-makelib ies_lib/lib_srl_fifo_v1_0_2 \
+  "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd" \
+-endlib
+-makelib ies_lib/axi_uart16550_v2_0_21 \
+  "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/a71f/hdl/axi_uart16550_v2_0_vh_rfs.vhd" \
+-endlib
+-makelib ies_lib/xil_defaultlib \
+  "../../../bd/mb_design/ip/mb_design_axi_uart16550_0_1/sim/mb_design_axi_uart16550_0_1.vhd" \
+-endlib
 -makelib ies_lib/generic_baseblocks_v2_1_0 \
   "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v" \
 -endlib
@@ -72,19 +84,19 @@
   "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/ace7/hdl/axi_crossbar_v2_1_vl_rfs.v" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
-  "../../../bd/mb_design/ip/mb_design_xbar_0/sim/mb_design_xbar_0.v" \
+  "../../../bd/mb_design/ip/mb_design_xbar_1/sim/mb_design_xbar_1.v" \
+-endlib
+-makelib ies_lib/proc_sys_reset_v5_0_13 \
+  "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd" \
+-endlib
+-makelib ies_lib/xil_defaultlib \
+  "../../../bd/mb_design/ip/mb_design_rst_ps7_0_50M_1/sim/mb_design_rst_ps7_0_50M_1.vhd" \
 -endlib
 -makelib ies_lib/axi_protocol_converter_v2_1_19 \
   "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/c83a/hdl/axi_protocol_converter_v2_1_vl_rfs.v" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
   "../../../bd/mb_design/ip/mb_design_auto_pc_0/sim/mb_design_auto_pc_0.v" \
--endlib
--makelib ies_lib/proc_sys_reset_v5_0_13 \
-  "../../../../edit_Huffman_IP_v1_0.srcs/sources_1/bd/mb_design/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd" \
--endlib
--makelib ies_lib/xil_defaultlib \
-  "../../../bd/mb_design/ip/mb_design_rst_ps7_0_50M_0/sim/mb_design_rst_ps7_0_50M_0.vhd" \
 -endlib
 -makelib ies_lib/xil_defaultlib \
   glbl.v

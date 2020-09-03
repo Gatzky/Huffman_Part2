@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='c:/gac/projekty/ip_repo/edit_Huffman_IP_v1_0.runs/mb_design_Huffman_IP_0_0_synth_1'
+HD_PWD='C:/Gac/Projekty/Huffman_Part2/edit_Huffman_IP_v1_0.runs/mb_design_Huffman_IP_0_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
