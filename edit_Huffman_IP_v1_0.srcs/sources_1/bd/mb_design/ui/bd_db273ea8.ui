@@ -1,0 +1,38 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 5 -x 1470 -y -170 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 5 -x 1470 -y -150 -defaultsOSRD
+preplace port uart_rtl_0 -pg 1 -lvl 5 -x 1470 -y -270 -defaultsOSRD
+preplace port gpio_inputData -pg 1 -lvl 5 -x 1470 -y -640 -defaultsOSRD
+preplace port gpio_outputData -pg 1 -lvl 5 -x 1470 -y -620 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 2 -x 500 -y -130 -defaultsOSRD
+preplace inst Huffman_IP_0 -pg 1 -lvl 2 -x 500 -y -320 -defaultsOSRD
+preplace inst axi_gpio_inputData -pg 1 -lvl 1 -x 150 -y -470 -defaultsOSRD
+preplace inst axi_gpio_outputData -pg 1 -lvl 1 -x 150 -y -330 -defaultsOSRD
+preplace inst axi_uart16550_0 -pg 1 -lvl 3 -x 920 -y -350 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 4 -x 1260 -y -450 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 3 -x 920 -y -120 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 4 20 -550 270 -420 720 -440 1110
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 2 1 740 -140n
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 4 30 -250 290 -410 730 -450 1100
+preplace netloc processing_system7_0_DDR 1 2 3 710J -230 NJ -230 1440
+preplace netloc processing_system7_0_FIXED_IO 1 2 3 730J -220 NJ -220 1420
+preplace netloc processing_system7_0_M_AXI_GP0 1 2 2 700J -460 1090
+preplace netloc ps7_0_axi_periph_M00_AXI 1 1 4 300 -400 710J -260 NJ -260 1420
+preplace netloc ps7_0_axi_periph_M01_AXI 1 0 5 10 -630 NJ -630 NJ -630 NJ -630 1430
+preplace netloc axi_gpio_inputData_GPIO 1 1 4 260J -650 NJ -650 NJ -650 1450J
+preplace netloc ps7_0_axi_periph_M02_AXI 1 0 5 40 -240 NJ -240 NJ -240 NJ -240 1430
+preplace netloc axi_gpio_outputData_GPIO 1 1 4 280J -640 NJ -640 NJ -640 1440J
+preplace netloc ps7_0_axi_periph_M03_AXI 1 2 3 740 -250 NJ -250 1410
+preplace netloc axi_uart16550_0_UART 1 3 2 1090J -270 NJ
+levelinfo -pg 1 -10 150 500 920 1260 1470
+pagesize -pg 1 -db -bbox -sgen -10 -660 1590 200
+"
+}
+{
+   "da_axi4_cnt":"7",
+   "da_board_cnt":"5",
+   "da_ps7_cnt":"2"
+}

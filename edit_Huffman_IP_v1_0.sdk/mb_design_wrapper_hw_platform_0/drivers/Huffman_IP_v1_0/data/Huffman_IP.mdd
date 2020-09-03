@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER Huffman_IP
+	OPTION supported_peripherals = (Huffman_IP);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = Huffman_IP;
+END DRIVER
