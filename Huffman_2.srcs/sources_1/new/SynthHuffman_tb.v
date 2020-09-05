@@ -47,8 +47,8 @@ end
 always
     #1 clock <= ~clock;
 
-always@(posedge clock) begin
-    #100 inputData = inputData + 1;
+always@(posedge dataReady) begin
+    inputData = inputData + 100;
 end
 
 endmodule
