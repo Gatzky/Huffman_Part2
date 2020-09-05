@@ -1,4 +1,4 @@
-Running: xsim.dir/SynthHuffman_tb_behav/xsimk.exe -simmode gui -wdb SynthHuffman_tb_behav.wdb -simrunnum 0 -socket 61940
+Running: xsim.dir/SynthHuffman_tb_behav/xsimk.exe -simmode gui -wdb SynthHuffman_tb_behav.wdb -simrunnum 0 -socket 62079
 Design successfully loaded
-Design Loading Memory Usage: 5268 KB (Peak: 5268 KB)
-Design Loading CPU Usage: 15 ms
+Design Loading Memory Usage: 5656 KB (Peak: 5656 KB)
+Design Loading CPU Usage: 61 ms

@@ -24,7 +24,7 @@ module SynthHuffman(clock, reset, inputData, dataEnable, outputData, outputProba
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
 parameter charMaxValue = 20;   // Maximum value, which can be written on 8 bits
 parameter dataLength = 255;     // Length of data, which will be coded
-parameter INIT = 3'b001, GET_DATA = 3'b001, BUILD_TREE =  3'b010, SEND_TREE = 3'b100;
+parameter INIT = 2'b00, GET_DATA = 2'b01, BUILD_TREE =  2'b10, SEND_TREE = 2'b11;
 
 input clock;
 input reset;
@@ -55,8 +55,7 @@ reg flag = 0;
     
 integer pair_count= 0;
 
-always @ (posedge clock)
-begin
+always @ (posedge clock) begin
     if(reset==1'b1) begin
         dataReady <= 1'b0;
         state <= INIT;
@@ -66,7 +65,7 @@ begin
             INIT:begin
                 symbolsList[0] <= 'b0;
                 probabilityList[0] <= 'b0;
-                
+
                 for(j=0;j<charMaxValue;j=j+1) begin
                    probabilityList[j] <= 'b0;
                    symbolsList[j] <= 'bz;
@@ -75,6 +74,7 @@ begin
                 state <= GET_DATA;
             end
             GET_DATA:begin
+            
                 if(dataEnable) begin
                     i <= i+1'b1;
                     
@@ -95,8 +95,8 @@ begin
                             end	
                             flag <= 1;
                        end	
-                    end		
-                        
+                    end
+                
                     if(!flag) begin
                         symbolsList[col] <= inputData;
                         huffmanList[col] <= inputData;

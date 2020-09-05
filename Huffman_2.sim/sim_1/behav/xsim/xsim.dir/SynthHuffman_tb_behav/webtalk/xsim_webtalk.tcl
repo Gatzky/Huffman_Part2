@@ -1,6 +1,6 @@
-webtalk_init -webtalk_dir C:/Gac/Projekty/Huffman_2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/
+webtalk_init -webtalk_dir C:/Gac/Projekty/Huffman_Part2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Sat Sep  5 21:16:43 2020" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Sat Sep  5 21:38:24 2020" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2019.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2552052" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "d28fffa5-672c-4818-a522-f431378b769c" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "b8e43b9a5e944ff784adb0d2522887ea" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "74" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "111" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz" -context "user_environment"
@@ -37,7 +37,7 @@ webtalk_add_data -client xsim -key Total_Nets -value "0" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Processes -value "24" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Instances -value "3" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Xilinx_HDL_Libraries_Used -value "secureip unimacro_ver unisims_ver " -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Time -value "0.76_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Memory -value "44896_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 3597068409 -regid "" -xml C:/Gac/Projekty/Huffman_2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Gac/Projekty/Huffman_2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Gac/Projekty/Huffman_2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Compiler_Time -value "0.83_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Compiler_Memory -value "44764_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 1713905130 -regid "" -xml C:/Gac/Projekty/Huffman_Part2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Gac/Projekty/Huffman_Part2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Gac/Projekty/Huffman_Part2/Huffman_2.sim/sim_1/behav/xsim/xsim.dir/SynthHuffman_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

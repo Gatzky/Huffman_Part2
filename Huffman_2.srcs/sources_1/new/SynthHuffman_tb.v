@@ -38,17 +38,17 @@ SynthHuffman UUT (clock, reset, inputData, dataEnable, outputData, outputProbabi
 initial begin
     clock = 1'b0;
     reset = 1'b0;
-    inputData = 8'b01011000;
+    inputData = 8'b00000011;
     dataEnable = 1'b1;
-    #10 reset = 1'b1;
-    #10 reset = 1'b0;
+    #5 reset = 1'b1;
+    #5 reset = 1'b0;
 end
 
 always
     #1 clock <= ~clock;
 
 always@(posedge clock) begin
-
+    #100 inputData = inputData + 1;
 end
 
 endmodule
