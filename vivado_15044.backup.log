@@ -1,0 +1,32 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sun Sep  6 13:07:45 2020
+# Process ID: 15044
+# Current directory: C:/Gac/Projekty/Huffman_2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7060 C:\Gac\Projekty\Huffman_2\Huffman_2.xpr
+# Log file: C:/Gac/Projekty/Huffman_2/vivado.log
+# Journal file: C:/Gac/Projekty/Huffman_2\vivado.jou
+#----------------------------------------------------------start_gui
+opopen_project C:/Gac/Projekty/Huffman_2/Huffman_2.xpScanning sources...
+FiFinished scanning sourceINFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+ININFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'opopen_project: Time (s): cpu = 00:00:23 ; elapsed = 00:00:12 . Memory (MB): peak = 807.934 ; gain = 179.02upupdate_compile_order -fileset sources_reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Couldn't access process for termination
+
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Sep  6 13:09:35 2020...
+kty/Huffman_2/Huffman_2.runs/synth_1
+
+update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 4
+[Sun Sep  6 13:08:43 2020] Launched synth_1...
+Run output will be captured here: C:/Gac/Projekty/Huffman_2/Huffman_2.runs/synth_1/runme.log
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Sun Sep  6 13:10:35 2020] Launched synth_1...
+Run output will be captured here: C:/Gac/Projekty/Huffman_2/Huffman_2.runs/synth_1/runme.log
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Sep  6 13:13:11 2020...

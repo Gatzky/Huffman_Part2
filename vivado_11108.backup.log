@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sun Sep  6 13:22:28 2020
+# Process ID: 11108
+# Current directory: C:/Gac/Projekty/Huffman_2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8804 C:\Gac\Projekty\Huffman_2\Huffman_2.xpr
+# Log file: C:/Gac/Projekty/Huffman_2/vivado.log
+# Journal file: C:/Gac/Projekty/Huffman_2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Gac/Projekty/Huffman_2/Huffman_2.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
+open_project: Time (s): cpu = 00:00:45 ; elapsed = 00:00:25 . Memory (MB): peak = 833.680 ; gain = 200.973
+update_compile_order -fileset sources_1

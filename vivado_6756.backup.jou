@@ -1,0 +1,79 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sun Sep  6 16:39:47 2020
+# Process ID: 6756
+# Current directory: C:/Gac/Projekty/Huffman_2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5812 C:\Gac\Projekty\Huffman_2\Huffman_2.xpr
+# Log file: C:/Gac/Projekty/Huffman_2/vivado.log
+# Journal file: C:/Gac/Projekty/Huffman_2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Gac/Projekty/Huffman_2/Huffman_2.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+llaunch_simulation
+launch_simulationexport_ip_user_files -of_objclose_sim
+_files C:/Gac/Projekty/Huffman_2/Huffman_2.srcs/sources_1/new/2Huffman_tb.v] -no_script -reset -force -quiet
+remove_files  C:/Gac/Projekty/Huffman_2/Huffman_2.srcs/sources_1/new/2Huffman_tb.v
+set_property top SynthHuffman [current_fileset]
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top SynthHuffman_tb [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+launch_simulation
+launch_simulation
+launch_simulation
+source SynthHuffman_tb.tcl
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+create_project Huffman_new C:/Gac/Projekty/Huffman_new -part xc7z020clg484-1
+file mkdir C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new
+close [ open C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/HuffmanCode.v w ]
+add_files C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/HuffmanCode.v
+update_compile_order -fileset sources_1
+close [ open C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/HuffmanTB.v w ]
+add_files C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/HuffmanTB.v
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top HuffmanTB [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+set_property top huffmancode_test [current_fileset]
+update_compile_order -fileset sources_1
+close [ open C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/HuffmanTop.v w ]
+add_files C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/HuffmanTop.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+close [ open C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/freqcount.v w ]
+add_files C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/freqcount.v
+update_compile_order -fileset sources_1
+close [ open C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/para2ser.v w ]
+add_files C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/para2ser.v
+update_compile_order -fileset sources_1
+launch_simulation
+add_files -norecurse {C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/sortnet/BitonicSortX8.v C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/sortnet/SortX16.v C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/sortnet/BitonicSortX4.v C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/sortnet/SortElement.v C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/sortnet/SortX8.v C:/Gac/Projekty/Huffman_new/Huffman_new.srcs/sources_1/new/sortnet/SortX4.v}
+update_compile_order -fileset sources_1
+launch_simulation
+source huffmancode_test.tcl
+current_project Huffman_2
+current_sim simulation_1
+close_sim
+close_project
+create_project project_1 C:/Gac/Projekty/project_1 -part xc7z020clg484-1
+add_files {C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Parallel2Serial_alpha.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/sort_alpha.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/DFFa.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/Memory_Init_Unit.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/testbench.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/top.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/shfreg.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/sort.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/length_finder_fsm.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/DFF.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/submodule.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/comparator.v C:/Gac/Projekty/HuffmanEncodingVerilog-master/Vfiles/Sort/addrmodule.v}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+current_project Huffman_new
+close_sim
+close_project
+launch_simulation
+source testbench.tcl
+run 1 us
+run 1 us
+close_sim

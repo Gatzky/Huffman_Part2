@@ -19,11 +19,11 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module SynthHuffman(clock, reset, inputData, dataEnable, outputData, outputProbabilityList, dataReady, outputState);
+module SynthHuffman(clock, reset, inputData, dataEnable, outputData, outputProbabilityList, dataReady, state);
 
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
 parameter charMaxValue = 255;   // Maximum value, which can be written on 8 bits
-parameter dataLength = 100;     // Length of data, which will be coded
+parameter dataLength = 10;     // Length of data, which will be coded
 parameter INIT = 2'b00, GET_DATA = 2'b01, BUILD_TREE =  2'b10, SEND_TREE = 2'b11;
 
 input clock;
@@ -34,15 +34,10 @@ output reg [bitInByte:0] outputData;
 output reg [bitInByte:0] outputProbabilityList;
 output reg dataReady;
 
-output reg [1:0]outputState;
-reg [1:0] state;
+output reg [1:0] state;
 reg [bitInByte:0]probabilityList[charMaxValue:0];				
 reg [bitInByte:0]symbolsList[charMaxValue:0];							
-
 reg [bitInByte:0]huffmanList[charMaxValue:0];		//List used to perform the algorithm on
-reg [bitInByte:0]pairList[2*charMaxValue+2:0];	    //The pair list, an abstraction for the tree concept. even - decode 0. odd - decode 1.
-												
-integer step = 0;                                   //Number of steps of tree building algorithm
 
 reg [bitInByte:0]col = 'b0;						   //Column length
 
@@ -52,12 +47,9 @@ integer j= 32'h0;
 integer k= 32'h0;
     							
 //Flag
-reg flag = 0;										
-    
-integer pair_count= 0;
+reg flag = 0;
 
 always @ (posedge clock) begin
-    outputState <= state;
     if(reset==1'b1) begin
         dataReady <= 1'b0;
         state <= INIT;
@@ -65,9 +57,7 @@ always @ (posedge clock) begin
     else begin
         case(state)
             INIT:begin
-                dataReady <= 1'b0;
-                symbolsList[0] <= 'b0;
-                probabilityList[0] <= 'b0;
+                dataReady <= 0;
 
                 for(j=0;j<charMaxValue;j=j+1) begin
                    probabilityList[j] <= 'b0;
@@ -76,30 +66,26 @@ always @ (posedge clock) begin
                 
                 state <= GET_DATA;
             end
-            GET_DATA:begin
             
+            GET_DATA:begin
                 if(dataEnable) begin
-                    i <= i+1'b1;
-                    
-                    for(j = 0; j <= charMaxValue; j = j+1) begin
+                    i <= i+1'b1; 
+                    for(j=0; j<=charMaxValue; j=j+1) begin
                         if(inputData == symbolsList[j]) begin
-                            probabilityList[j] <= probabilityList[j] + 1;
-                                
-                            for(k = 255; k >= 0; k = k-1) begin
-                                if (k < j) begin
-                                    if(probabilityList[k] <= probabilityList[j]) begin
-                                        symbolsList[j] <= symbolsList[k];
-                                        probabilityList[j] <= probabilityList[k];
-                                        symbolsList[k] <= symbolsList[j];
-                                        probabilityList[k] <= symbolsList[k];
-                                                
-                                        huffmanList[j] <= symbolsList[j];
-                                        huffmanList[k] <= symbolsList[k];            
-                                    end
+                            probabilityList[j] <= probabilityList[j] + 1;  
+                            for(k=j-1; k>=0; k=k-1) begin
+                                if(probabilityList[k] <= probabilityList[j]) begin
+                                    symbolsList[j] <= symbolsList[k];
+                                    probabilityList[j] <= probabilityList[k];
+                                    symbolsList[k] <= symbolsList[j];
+                                    probabilityList[k] <= probabilityList[j];
+                                            
+                                    huffmanList[j] <= symbolsList[j];
+                                    huffmanList[k] <= symbolsList[k];            
                                 end
                             end	
                             flag <= 1;
-                       end
+                       end	
                     end
                 
                     if(!flag) begin
@@ -109,26 +95,21 @@ always @ (posedge clock) begin
                         col <= col+1;
                     end		 
                     flag <= 0;
-                        
                     if(i == dataLength)	begin	
                         state <= BUILD_TREE;
                         col <= col -1 ;
                    end
                 end
             end
+            
             BUILD_TREE:begin
                 dataReady <= 0;
                 if(col) begin			//One step per cycle
                     probabilityList[col-1] <= probabilityList[col] + probabilityList[col-1];		//Added probabilities
-              
-                    pairList[step] <= huffmanList[col-1];			//Add in pair table
-                    pairList[step+1] <= huffmanList[col];
-                    step <= step + 2;
                 
                     col <= col - 1;		//removing least symbol
-                    pair_count <= pair_count +2;
                 
-                    for(k = 255; k >= 0; k = k-1) begin
+                    for(k = 255;k>=0;k=k-1) begin
                         if (k < col) begin
                             if (probabilityList[k] < probabilityList[j]) begin
                                 huffmanList[j] <= huffmanList[k];
@@ -146,11 +127,13 @@ always @ (posedge clock) begin
                 end
             end
             SEND_TREE:begin
-               for(k = 0; k < charMaxValue; k = k+1) begin
-                    outputData = huffmanList[k];
-                    outputProbabilityList = probabilityList[k];
+               dataReady <= 1;
+               for(k=0;k<=dataLength;k=k+1) begin
+                    outputData <= huffmanList[k];
                end
-               dataReady <= 1'b1;
+               for(k=0;k<=dataLength;k=k+1) begin
+                    outputProbabilityList <= probabilityList[k];
+               end
                state <= INIT;
             end
         endcase
