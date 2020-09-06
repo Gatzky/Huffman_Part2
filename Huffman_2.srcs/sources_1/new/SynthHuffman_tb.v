@@ -51,16 +51,8 @@ always
     #5 clock <= ~clock;
     
 always@(posedge clock) begin
-    if (state != 1) begin
-        count = count + 1;
-        if (count == 5) begin
-            count = 0;
-            inputData <= inputData + 100;
-            inputData <= inputData + 100;
-        end
-    end
-    else begin
-        count = 0;
+    if (state == 1) begin
+        inputData <= inputData + 100;
     end
 end
 

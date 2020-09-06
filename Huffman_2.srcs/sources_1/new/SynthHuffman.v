@@ -24,7 +24,7 @@ module SynthHuffman(clock, reset, inputData, dataEnable, outputData, outputProba
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
 parameter charMaxValue = 255;   // Maximum value, which can be written on 8 bits
 parameter dataLength = 10;     // Length of data, which will be coded
-parameter INIT = 2'b00, GET_DATA = 2'b01, BUILD_TREE =  2'b10, SEND_TREE = 2'b11;
+parameter INIT = 3'b000, GET_DATA = 3'b001, SORT_DATA = 3'b010, BUILD_TREE =  3'b011, SEND_TREE = 3'b100;
 
 input clock;
 input reset;
@@ -35,16 +35,19 @@ output reg [bitInByte:0] outputProbabilityList;
 output reg dataReady;
 
 output reg [1:0] state;
-reg [bitInByte:0]probabilityList[charMaxValue:0];				
-reg [bitInByte:0]symbolsList[charMaxValue:0];							
-reg [bitInByte:0]huffmanList[charMaxValue:0];		//List used to perform the algorithm on
+reg [bitInByte:0]probabilityList[dataLength:0];
+reg [bitInByte:0]receivedData[dataLength:0];					
+reg [bitInByte:0]symbolsList[dataLength:0];							
+reg [bitInByte:0]huffmanList[dataLength:0];		//List used to perform the algorithm on
+reg [bitInByte:0]currentData;
 
 reg [bitInByte:0]col = 'b0;						   //Column length
 
 //Loop variables
-integer i= 32'h0;	
-integer j= 32'h0;
-integer k= 32'h0;
+integer i= 8'h0;	
+integer j= 8'h0;
+integer k=8'h0;
+integer l= 8'h0;
     							
 //Flag
 reg flag = 0;
@@ -58,35 +61,49 @@ always @ (posedge clock) begin
         case(state)
             INIT:begin
                 dataReady <= 0;
+                j<=0;
 
-                for(j=0;j<charMaxValue;j=j+1) begin
+                for(j=0;j<=dataLength;j=j+1) begin
                    probabilityList[j] <= 'b0;
                    symbolsList[j] <= 'bz;
                 end
                 
                 state <= GET_DATA;
             end
-            
             GET_DATA:begin
+            if(j<=dataLength) begin
+                receivedData[j]<=inputData;
+                j<=j+1;
+            end
+            else begin
+                j=0;
+                state<=SORT_DATA;
+            end
+            end
+            
+            SORT_DATA:begin
                 if(dataEnable) begin
                     i <= i+1'b1; 
-                    for(j=0; j<=charMaxValue; j=j+1) begin
-                        if(inputData == symbolsList[j]) begin
-                            probabilityList[j] <= probabilityList[j] + 1;  
-                            for(k=j-1; k>=0; k=k-1) begin
-                                if(probabilityList[k] <= probabilityList[j]) begin
-                                    symbolsList[j] <= symbolsList[k];
-                                    probabilityList[j] <= probabilityList[k];
-                                    symbolsList[k] <= symbolsList[j];
-                                    probabilityList[k] <= probabilityList[j];
+                    for(l =0; l<=dataLength;l=l+1)
+                        currentData = receivedData[l];
+                        l= l+1;
+                        for(j=0; j<=dataLength; j=j+1) begin
+                            if(inputData == symbolsList[j]) begin
+                                probabilityList[j] <= probabilityList[j] + 1;  
+                                for(k=j-1; k>=0; k=k-1) begin
+                                    if(probabilityList[k] <= probabilityList[j]) begin
+                                        symbolsList[j] <= symbolsList[k];
+                                        probabilityList[j] <= probabilityList[k];
+                                        symbolsList[k] <= symbolsList[j];
+                                        probabilityList[k] <= probabilityList[j];
                                             
-                                    huffmanList[j] <= symbolsList[j];
-                                    huffmanList[k] <= symbolsList[k];            
-                                end
-                            end	
-                            flag <= 1;
-                       end	
-                    end
+                                        huffmanList[j] <= symbolsList[j];
+                                        huffmanList[k] <= symbolsList[k];            
+                                    end
+                                end	
+                                flag <= 1;
+                             end	
+                        end    
                 
                     if(!flag) begin
                         symbolsList[col] <= inputData;
@@ -109,7 +126,7 @@ always @ (posedge clock) begin
                 
                     col <= col - 1;		//removing least symbol
                 
-                    for(k = 255;k>=0;k=k-1) begin
+                    for(k = dataLength;k>=0;k=k-1) begin
                         if (k < col) begin
                             if (probabilityList[k] < probabilityList[j]) begin
                                 huffmanList[j] <= huffmanList[k];
@@ -127,14 +144,17 @@ always @ (posedge clock) begin
                 end
             end
             SEND_TREE:begin
-               dataReady <= 1;
-               for(k=0;k<=dataLength;k=k+1) begin
-                    outputData <= huffmanList[k];
+               if(l < dataLength) begin
+                    dataReady <= 1;
+                    outputData <= symbolsList[l];
+                    outputProbabilityList <= probabilityList[l];
+                    l <= l+1;
                end
-               for(k=0;k<=dataLength;k=k+1) begin
-                    outputProbabilityList <= probabilityList[k];
-               end
-               state <= INIT;
+               else begin
+                    dataReady <= 0;
+                     l <= 0;
+                     state <= INIT;
+                end
             end
         endcase
     end
