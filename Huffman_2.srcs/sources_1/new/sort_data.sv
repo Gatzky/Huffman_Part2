@@ -34,10 +34,10 @@ always @ (posedge clock) begin
             end
             j = j + 1;
         end
-        i = i + 1;
-        //else begin
-          //  i = i + 1;
-        //end
+        else begin
+            i = i + 1;
+            j <= 0;
+        end
     end
     else begin
         i <= 0;

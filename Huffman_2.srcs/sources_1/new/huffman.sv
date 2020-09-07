@@ -4,46 +4,38 @@
 // Module Name: huffman
 //////////////////////////////////////////////////////////////////////////////////
 
-module huffman(clock, reset, inputData, dataEnable, outputData, outputProbabilityList, dataReady, state);
+module huffman(clock, reset, inputData, outputData, dataReady);
 
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
 parameter charMaxValue = 255;   // Maximum value, which can be written on 8 bits
-parameter dataLength = 7;     // Length of data, which will be coded
+parameter dataLength = 7;     // Length of data, decrement by one, which will be coded
 parameter INIT = 3'b000, GET_DATA = 3'b001, SORT_DATA = 3'b010, SORT_PROB_SYM = 3'b011, BUILD_TREE =  3'b100, ENCODE_DATA = 3'b101, SEND_TREE = 3'b111;
 
 input clock;
 input reset;
 input [bitInByte:0] inputData;
-input dataEnable;
-output reg [bitInByte:0] outputData;
-output reg [bitInByte:0] outputProbabilityList;
-output reg dataReady;
-output reg [2:0] state;
 
-reg [bitInByte:0]tempProbabilityList[dataLength:0];
-reg [bitInByte:0]tempSymbolsList[dataLength:0];
+output reg [bitInByte:0] outputData;
+output reg dataReady;
+
+reg [2:0] state;
+
+reg [bitInByte:0]tempProbabilityList[dataLength:0]; 
 reg [bitInByte:0]probabilityList[dataLength:0];
+reg [bitInByte:0]tempSymbolsList[dataLength:0];
 reg [bitInByte:0]symbolsList[dataLength:0];
+
 reg [bitInByte:0]huffmanList[dataLength:0];		//List used to perform the algorithm on
 reg [bitInByte:0]encodedData[dataLength:0];		//List used to perform the algorithm on
 reg [bitInByte:0]receivedData[dataLength:0];		//List used to perform the algorithm on
+
 reg [bitInByte:0]Count;
-reg [bitInByte:0]Col;
 reg [bitInByte:0]tempData[dataLength:0];
 reg [bitInByte:0]symProbLength;
-reg [bitInByte:0]template = 8'b11111111;
-
-reg [bitInByte:0]col = 'b0;						   //Column length
 
 //Loop variables
 integer i = 32'h0;	
 integer j = 32'h0;
-integer k = 32'h0;
-integer l = 32'h0;
-    							
-//Flag
-reg flag = 0;
-
 
 always @ (posedge clock) begin
     if(reset==1'b1) begin
@@ -53,11 +45,11 @@ always @ (posedge clock) begin
     else begin
         case(state)
             INIT:begin
+            
                 dataReady <= 0;
-                
                 Count <= 0;
-                Col <= 0;
                 symProbLength <= 255;
+                outputData <= 0;
     
                 for(i=0;i<=dataLength;i=i+1) begin
                     tempProbabilityList[i] <= 'b0;
@@ -142,7 +134,7 @@ always @ (posedge clock) begin
             
             BUILD_TREE:begin
                 if (i <= symProbLength) begin
-                    huffmanList[i] <= (template >> (dataLength - i)) - 1;
+                    huffmanList[i] <= (8'b11111111 >> (dataLength - i)) - 1;
                     i <= i + 1;
                 end
                 else begin
@@ -163,6 +155,7 @@ always @ (posedge clock) begin
                     end
                     else begin
                         i = i + 1;
+                        j = 0;
                     end
                 end
                 else begin
@@ -173,14 +166,12 @@ always @ (posedge clock) begin
             end
             
             SEND_TREE:begin
-                if(i < charMaxValue) begin
+                if(i < dataLength) begin
                     dataReady <= 1;
-                    outputData <= huffmanList[i];
-                    outputProbabilityList <= probabilityList[i];
+                    outputData <= encodedData[i];;
                     i = i + 1;
                 end
                 else begin
-                    dataReady <= 0;
                     i <= 0;
                     state <= INIT;
                 end

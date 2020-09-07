@@ -13,7 +13,6 @@ reg clock;
 reg [bitInByte:0]inProbabilityList[dataLength:0];
 reg [bitInByte:0]inHuffmanList[dataLength:0];
 wire [bitInByte:0] outputData;
-wire [bitInByte:0] outputProbabilityList;
 wire dataReady;
 wire [1:0] nextState;
 

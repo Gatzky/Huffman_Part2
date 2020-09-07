@@ -14,15 +14,12 @@ reg reset;
 reg [7:0] inputData;
 reg dataEnable;
 wire [7:0] outputData;
-wire [7:0] outputProbabilityList;
 wire dataReady;
-wire [2:0] state;
-//wire [bitInByte:0]outHuffmanList[dataLength:0];		//List used to perform the algorithm on
 
 reg [2:0] count = 0;
 
 // Instantiate the module
-huffman UUT(clock, reset, inputData, dataEnable, outputData, outputProbabilityList, dataReady, state);
+huffman UUT(clock, reset, inputData, outputData, dataReady);
 
 initial begin
     clock <= 1'b0;
@@ -42,22 +39,18 @@ always@(posedge clock) begin
     #10 inputData <= 7;
     #10 inputData <= 10;
     #10 inputData <= 21;
-    /*if (state != 1) begin
-        count = count + 1;
-        if (count == 5) begin
-            count = 0;
-            inputData <= inputData + 100;
-            inputData <= inputData + 100;
-        end
-    end
-    else begin
-        count = 0;
-    end*/
 end
 
 always@(posedge dataReady) begin
-    //inputData <= inputData + 100;
-    //dataEnable <= 1'b0;
+    $display("input: {2, 4, 7, 10, 21, 2, 4, 4");
+    #10 $display("input = 2, output=%b", outputData);
+    #10 $display("input = 4, output=%b", outputData);
+    #10 $display("input = 7, output=%b", outputData);
+    #10 $display("input = 10, output=%b", outputData);
+    #10 $display("input = 21, output=%b", outputData);
+    #10 $display("input = 2, output=%b", outputData);
+    #10 $display("input = 4, output=%b", outputData);
+    #10 $display("input = 4, output=%b", outputData);
 end
 
 endmodule
