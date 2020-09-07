@@ -1,0 +1,47 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon Sep  7 21:26:06 2020
+# Process ID: 3964
+# Current directory: G:/SDUP_Zdalne/Huffman_Part2/Huffman_2.runs/Huffman_On_Ip_HuffmanAXI_0_0_synth_1
+# Command line: vivado.exe -log Huffman_On_Ip_HuffmanAXI_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Huffman_On_Ip_HuffmanAXI_0_0.tcl
+# Log file: G:/SDUP_Zdalne/Huffman_Part2/Huffman_2.runs/Huffman_On_Ip_HuffmanAXI_0_0_synth_1/Huffman_On_Ip_HuffmanAXI_0_0.vds
+# Journal file: G:/SDUP_Zdalne/Huffman_Part2/Huffman_2.runs/Huffman_On_Ip_HuffmanAXI_0_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source Huffman_On_Ip_HuffmanAXI_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'g:/SDUP_Zdalne/ip_repo/HuffmanAXI_1.0'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'G:/Xlinix/Vivado/2019.1/data/ip'.
+Command: synth_design -top Huffman_On_Ip_HuffmanAXI_0_0 -part xc7z020clg484-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 840 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 574.418 ; gain = 182.152
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Huffman_On_Ip_HuffmanAXI_0_0' [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ip/Huffman_On_Ip_HuffmanAXI_0_0/synth/Huffman_On_Ip_HuffmanAXI_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'HuffmanAXI_v1_0' [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ipshared/bcbe/hdl/HuffmanAXI_v1_0.v:4]
+	Parameter C_S00_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S00_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'HuffmanAXI_v1_0_S00_AXI' [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ipshared/bcbe/hdl/HuffmanAXI_v1_0_S00_AXI.v:4]
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter ADDR_LSB bound to: 2 - type: integer 
+	Parameter OPT_MEM_ADDR_BITS bound to: 1 - type: integer 
+INFO: [Synth 8-226] default block is never used [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ipshared/bcbe/hdl/HuffmanAXI_v1_0_S00_AXI.v:372]
+ERROR: [Synth 8-439] module 'huffman' not found [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ipshared/bcbe/hdl/HuffmanAXI_v1_0_S00_AXI.v:415]
+ERROR: [Synth 8-6156] failed synthesizing module 'HuffmanAXI_v1_0_S00_AXI' [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ipshared/bcbe/hdl/HuffmanAXI_v1_0_S00_AXI.v:4]
+ERROR: [Synth 8-6156] failed synthesizing module 'HuffmanAXI_v1_0' [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ipshared/bcbe/hdl/HuffmanAXI_v1_0.v:4]
+ERROR: [Synth 8-6156] failed synthesizing module 'Huffman_On_Ip_HuffmanAXI_0_0' [g:/SDUP_Zdalne/Huffman_Part2/Huffman_2.srcs/sources_1/bd/Huffman_On_Ip/ip/Huffman_On_Ip_HuffmanAXI_0_0/synth/Huffman_On_Ip_HuffmanAXI_0_0.v:57]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 638.035 ; gain = 245.770
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+9 Infos, 0 Warnings, 0 Critical Warnings and 5 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 21:26:31 2020...

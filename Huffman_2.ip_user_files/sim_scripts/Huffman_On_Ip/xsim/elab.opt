@@ -1,0 +1,1 @@
+--relax --debug typical --mt auto -L xil_defaultlib -L blk_mem_gen_v8_4_3 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot Huffman_On_Ip xil_defaultlib.Huffman_On_Ip xil_defaultlib.glbl -log elaborate.log
