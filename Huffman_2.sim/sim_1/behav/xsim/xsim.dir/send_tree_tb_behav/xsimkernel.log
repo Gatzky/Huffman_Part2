@@ -1,0 +1,7 @@
+Running: xsim.dir/send_tree_tb_behav/xsimk.exe -simmode gui -wdb send_tree_tb_behav.wdb -simrunnum 0 -socket 50098
+Design successfully loaded
+Design Loading Memory Usage: 5268 KB (Peak: 5268 KB)
+Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 5964 KB (Peak: 5964 KB)
+Simulation CPU Usage: 171 ms

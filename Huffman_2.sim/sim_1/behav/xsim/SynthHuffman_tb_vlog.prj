@@ -1,8 +1,8 @@
 # compile verilog/system verilog design source files
-verilog xil_defaultlib  \
-"../../../../Huffman_2.srcs/sources_1/new/SynthHuffman.v" \
-
 sv xil_defaultlib  \
+"../../../../Huffman_2.srcs/sources_1/new/SynthHuffman.v" \
+"../../../../Huffman_2.srcs/sources_1/new/get_data.sv" \
+"../../../../Huffman_2.srcs/sources_1/new/init.v" \
 "../../../../Huffman_2.srcs/sources_1/new/SynthHuffman_tb.v" \
 
 # compile glbl module

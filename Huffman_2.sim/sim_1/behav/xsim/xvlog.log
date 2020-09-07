@@ -1,2 +1,5 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Gac/Projekty/Huffman_2/Huffman_2.srcs/sources_1/new/SynthHuffman_tb.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module SynthHuffman_tb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Gac/Projekty/Huffman_2/Huffman_2.srcs/sources_1/new/SynthHuffman.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SynthHuffman
+WARNING: [VRFC 10-159] /* in comment [C:/Gac/Projekty/Huffman_2/Huffman_2.srcs/sources_1/new/SynthHuffman.v:78]
+ERROR: [VRFC 10-3584] no definition for port 'state' [C:/Gac/Projekty/Huffman_2/Huffman_2.srcs/sources_1/new/SynthHuffman.v:22]
+ERROR: [VRFC 10-2865] module 'SynthHuffman' ignored due to previous errors [C:/Gac/Projekty/Huffman_2/Huffman_2.srcs/sources_1/new/SynthHuffman.v:22]
