@@ -16,7 +16,7 @@ reg dataEnable;
 wire [7:0] outputData;
 wire [7:0] outputProbabilityList;
 wire dataReady;
-wire [1:0] state;
+wire [2:0] state;
 //wire [bitInByte:0]outHuffmanList[dataLength:0];		//List used to perform the algorithm on
 
 reg [2:0] count = 0;
@@ -37,17 +37,11 @@ always
     #5 clock <= ~clock;
     
 always@(posedge clock) begin
-    #5 inputData <= 2;
-    #5 inputData <= 4;
-    #5 inputData <= 7;
-    #5 inputData <= 10;
-    #5 inputData <= 21;
-    #5 inputData <= 30;
-    #5 inputData <= 2;
-    #5 inputData <= 4;
-    #5 inputData <= 2;
-    #5 inputData <= 4;
-    #5 inputData <= 21;
+    #10 inputData <= 2;
+    #10 inputData <= 4;
+    #10 inputData <= 7;
+    #10 inputData <= 10;
+    #10 inputData <= 21;
     /*if (state != 1) begin
         count = count + 1;
         if (count == 5) begin

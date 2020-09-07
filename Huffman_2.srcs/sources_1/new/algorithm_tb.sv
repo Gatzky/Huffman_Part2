@@ -23,7 +23,7 @@
 module algorithm_tb();
 
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
-parameter dataLength = 9;     // Length of data, which will be coded
+parameter dataLength = 8;     // Length of data, which will be coded
 
 reg clock;
 reg [bitInByte:0]symProbLength;
@@ -33,7 +33,7 @@ algorithm UUT(clock, symProbLength, huffmanList);
 
 initial begin
     clock <= 1'b0;
-    symProbLength <= 4;
+    symProbLength <= 9;
 end
 
 always

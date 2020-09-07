@@ -1,0 +1,7 @@
+*.log
+*.jou
+*.str
+/*.jou
+/*.log
+/*.str
+/Huffman_2.sim/
