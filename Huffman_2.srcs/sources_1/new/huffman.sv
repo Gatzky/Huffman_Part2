@@ -29,6 +29,7 @@ reg [bitInByte:0]huffmanList[dataLength:0];		//List used to perform the algorith
 reg [bitInByte:0]encodedData[dataLength:0];		//List used to perform the algorithm on
 reg [bitInByte:0]receivedData[dataLength:0];		//List used to perform the algorithm on
 
+reg [bitInByte:0]flag;
 reg [bitInByte:0]Count;
 reg [bitInByte:0]tempData[dataLength:0];
 reg [bitInByte:0]symProbLength;
@@ -45,7 +46,8 @@ always @ (posedge clock) begin
     else begin
         case(state)
             INIT:begin
-            
+                
+                flag <= 0;
                 dataReady <= 0;
                 Count <= 0;
                 symProbLength <= 255;
@@ -67,13 +69,19 @@ always @ (posedge clock) begin
             end
             
             GET_DATA:begin
-                if(i<=dataLength) begin
-                    receivedData[i]<=inputData;
-                    i<=i+1;
+                if (inputData == 32'h3E) begin
+                    flag <= 1;
                 end
-                else begin
-                    i=0;
-                    state<=SORT_DATA;
+                
+                if (flag == 1) begin
+                    if(i<=dataLength) begin
+                        receivedData[i]<=inputData;
+                        i<=i+1;
+                    end
+                    else begin
+                        i=0;
+                        state<=SORT_DATA;
+                    end
                 end
             end
                 
@@ -166,7 +174,7 @@ always @ (posedge clock) begin
             end
             
             SEND_TREE:begin
-                if(i < dataLength) begin
+                if(i <= dataLength) begin
                     dataReady <= 1;
                     outputData <= encodedData[i];;
                     i = i + 1;
