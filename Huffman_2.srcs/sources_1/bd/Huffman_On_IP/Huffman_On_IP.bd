@@ -1,0 +1,11 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "name": "Huffman_On_IP",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.1"
+    },
+    "design_tree": {}
+  }
+}
