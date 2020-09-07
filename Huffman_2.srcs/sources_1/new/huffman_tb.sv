@@ -17,16 +17,18 @@ wire [7:0] outputData;
 wire [7:0] outputProbabilityList;
 wire dataReady;
 wire [1:0] state;
-wire [bitInByte:0]outHuffmanList[dataLength:0];		//List used to perform the algorithm on
+//wire [bitInByte:0]outHuffmanList[dataLength:0];		//List used to perform the algorithm on
 
 reg [2:0] count = 0;
 
 // Instantiate the module
-huffman UUT (clock, reset, dataReady, state);
+huffman UUT(clock, reset, inputData, dataEnable, outputData, outputProbabilityList, dataReady, state);
 
 initial begin
     clock <= 1'b0;
     reset <= 1'b0;
+    dataEnable <= 1'b1;
+    inputData <= 8'b00000000;
     #5 reset <= 1'b1;
     #5 reset <= 1'b0;
 end
@@ -35,6 +37,17 @@ always
     #5 clock <= ~clock;
     
 always@(posedge clock) begin
+    #5 inputData <= 2;
+    #5 inputData <= 4;
+    #5 inputData <= 7;
+    #5 inputData <= 10;
+    #5 inputData <= 21;
+    #5 inputData <= 30;
+    #5 inputData <= 2;
+    #5 inputData <= 4;
+    #5 inputData <= 2;
+    #5 inputData <= 4;
+    #5 inputData <= 21;
     /*if (state != 1) begin
         count = count + 1;
         if (count == 5) begin

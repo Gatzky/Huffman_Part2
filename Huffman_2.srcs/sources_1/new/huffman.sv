@@ -7,9 +7,9 @@
 module huffman(clock, reset, inputData, dataEnable, outputData, outputProbabilityList, dataReady, state);
 
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
-parameter charMaxValue = 255;   // Maximum value, which can be written on 8 bits
-parameter dataLength = 10;     // Length of data, which will be coded
-parameter INIT = 3'b000, GET_DATA = 3'b001, SORT_DATA = 3'b010, BUILD_TREE =  3'b011, SEND_TREE = 3'b100;
+parameter charMaxValue = 40;   // Maximum value, which can be written on 8 bits
+parameter dataLength = 9;     // Length of data, which will be coded
+parameter INIT = 3'b000, GET_DATA = 3'b001, SORT_DATA = 3'b010, SORT_PROB_SYM = 3'b011, BUILD_TREE =  3'b100, SEND_TREE = 3'b101;
 
 input clock;
 input reset;
@@ -20,13 +20,17 @@ output reg [bitInByte:0] outputProbabilityList;
 output reg dataReady;
 output reg [1:0] state;
 
+reg [bitInByte:0]tempProbabilityList[dataLength:0];
+reg [bitInByte:0]tempSymbolsList[dataLength:0];
 reg [bitInByte:0]probabilityList[dataLength:0];
 reg [bitInByte:0]symbolsList[dataLength:0];
 reg [bitInByte:0]huffmanList[dataLength:0];		//List used to perform the algorithm on
 reg [bitInByte:0]receivedData[dataLength:0];		//List used to perform the algorithm on
 reg [bitInByte:0]Count;
 reg [bitInByte:0]Col;
-reg [bitInByte:0]tempData;
+reg [bitInByte:0]tempData[dataLength:0];
+reg [bitInByte:0]symProbLength;
+reg [bitInByte:0]template;
 
 reg [bitInByte:0]col = 'b0;						   //Column length
 
@@ -49,13 +53,22 @@ always @ (posedge clock) begin
         case(state)
             INIT:begin
                 dataReady <= 0;
+                
+                Count <= 0;
+                Col <= 0;
+                symProbLength <= 255;
     
                 for(i=0;i<=dataLength;i=i+1) begin
+                    tempProbabilityList[i] <= 'b0;
+                    tempSymbolsList[i] <= 'b0;
                     probabilityList[i] <= 'b0;
-                    symbolsList[i] <= 'bz;
+                    symbolsList[i] <= 'b0;
+                    receivedData[i] <= 'b0;
                     huffmanList[i] <= 'b0;
+                    tempData[i] <= 'b0;
                 end
-                                    
+                   
+                i <= 0;                 
                 state <= GET_DATA;
             end
             
@@ -71,71 +84,72 @@ always @ (posedge clock) begin
             end
                 
             SORT_DATA:begin
-                if(dataEnable) begin
-                    Count <= Count + 1'b1;
-                    if (i <= dataLength) begin
-                        tempData <= receivedData[i];
-                        if(j <= dataLength) begin
-                            if(tempData == symbolsList[j]) begin
-                                probabilityList[j] <= probabilityList[j] + 1;
-                                if (k >= 0) begin
-                                    symbolsList[j] <= symbolsList[k];
-                                    probabilityList[j] <= probabilityList[k];
-                                    symbolsList[k] <= symbolsList[j];
-                                    probabilityList[k] <= probabilityList[j];
-                                                        
-                                    huffmanList[j] <= symbolsList[j];
-                                    huffmanList[k] <= symbolsList[k];  
-                                end
-                                else begin
-                                    flag <= 1;
-                                    j = j + 1;
-                                    k <= j - 1;
-                                end
+                if (i < charMaxValue) begin
+                    if (j <= dataLength) begin
+                        if (receivedData[j] == i) begin
+                            if (tempSymbolsList[symProbLength] == i) begin
+                                tempProbabilityList[symProbLength] = tempProbabilityList[symProbLength] + 1;
                             end
+                            else begin
+                                symProbLength = symProbLength + 1;
+                                tempSymbolsList[symProbLength] = i;
+                                tempProbabilityList[symProbLength] = 1;
+                            end
+                                    
+                            tempData[Count] <= i;
+                            Count = Count + 1;
                         end
-                        else begin
-                            i = i + 1;
-                        end
+                        j = j + 1;
                     end
                     else begin
-                        if(!flag) begin
-                            symbolsList[Col] <= tempData;
-                            huffmanList[Col] <= tempData;
-                            probabilityList[Col] <= 'b1;
-                            Col <= Col+1;
-                        end		 
-                        flag <= 0;
-                        if(i == dataLength)	begin
-                            state <= BUILD_TREE;
-                            Col <= Col -1 ;
-                        end
+                        i <= i + 1;
+                        j <= 0;
                     end
+                end
+                else begin
+                    i <= 0;
+                    j <= 0;
+                    state <= SORT_PROB_SYM;
+                    Count <= 0;
+                end     
+            end
+            
+            SORT_PROB_SYM:begin
+                if (i < dataLength) begin
+                    if (j <= symProbLength) begin
+                        if (tempProbabilityList[j] == i) begin    
+                            probabilityList[Count] <= i;
+                            symbolsList[Count] <= tempSymbolsList[j];
+                            Count = Count + 1;
+                        end
+                        j = j + 1;
+                    end
+                    else begin
+                        i <= i + 1;
+                        j <= 0;
+                    end
+                end
+                else begin
+                    i <= 0;
+                    j <= 0;
+                    state <= BUILD_TREE;
+                    Count <= 0;
                 end
             end
             
             BUILD_TREE:begin
-                dataReady <= 0;
-                if(Col) begin			//One step per cycle
-                    probabilityList[Col-1] <= probabilityList[Col] + probabilityList[Col-1];		//Added probabilities
-                    Col <= Col - 1;		//removing least symbol
-                        
-                    if ( k > 0) begin 
-                        if (probabilityList[k] < probabilityList[Count]) begin
-                            huffmanList[Count] <= huffmanList[k];
-                            probabilityList[Count] <= probabilityList[k];
-                            huffmanList[k] <= huffmanList[Count];
-                            probabilityList[k] <= probabilityList[Count];
-                        end
-                        k = k - 1;
+                template <= 8'bZZZZZZZZ;
+                if (i <= symProbLength) begin
+                    if (j <= i) begin
+                        huffmanList[symProbLength] = (huffmanList[symProbLength] << 1) | 8'b00000001;
+                        j = j + 1;
                     end
                     else begin
-                        k <= Col - 1;
+                        i = i +1;
                     end
                 end
                 else begin
                     state <= SEND_TREE;
-                    Count <= 0;
                 end
             end
             
