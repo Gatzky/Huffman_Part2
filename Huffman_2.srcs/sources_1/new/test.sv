@@ -45,6 +45,10 @@ reg [bitInByte:0] finishedWord = 0;
 reg [bitInByte:0] shortestWordPos = 0;
 reg [bitInByte:0] changedValue = 0;
 reg [bitInByte:0] newValue = 0;
+reg test = 0;
+reg [bitInByte:0] value = 0;
+reg value_0 = 0;
+reg bool = 0;
 
 always @ (posedge clock) begin
     case(state)
@@ -55,6 +59,10 @@ always @ (posedge clock) begin
             shortestWordPos <= 255;
             state <= STRATEGY;
             changedValue <= 0;
+            test <= 0;
+            value <= 0;
+            value_0 <= 0;
+            bool <= 0;
         end 
         STRATEGY:begin
             if (symProbLength == 1) begin
@@ -74,14 +82,18 @@ always @ (posedge clock) begin
         end
         GEN_VALUE:begin
             if (i < finishedWord) begin
+                value = tempHuffmanList[i];
+                value_0 = tempHuffmanList[i][longestWord];
+                bool = (tempHuffmanList[i][longestWord] === 1'bZ);
                 if(tempHuffmanList[i][longestWord] === 1'bZ) begin
-                    shortestWordPos = i;
-                    changedValue = tempHuffmanList[shortestWordPos];
+                    shortestWordPos <= i;
+                    changedValue <= tempHuffmanList[i];
+                    test <= ~test;
                 end
-                i = i + 1;
+                i <= i + 1;
             end
             else begin
-                if( shortestWordPos == (finishedWord)) begin
+                if(shortestWordPos == 0) begin
                     longestWord = longestWord + 1;
                 end
                 finishedWord = finishedWord + 1;

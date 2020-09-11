@@ -37,7 +37,7 @@ test UUT(clock, symProbLength, inHuffmanList, outHuffmanList);
 
 initial begin
     clock <= 1'b0;
-    symProbLength <= 5;
+    symProbLength <= 8;
     inHuffmanList[0] <= 8'bZZZZZZZZ;
     inHuffmanList[1] <= 8'bZZZZZZZZ;
     inHuffmanList[2] <= 8'bZZZZZZZZ;
