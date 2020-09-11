@@ -55,8 +55,6 @@ always @ (posedge clock) begin
             shortestWordPos <= 255;
             state <= STRATEGY;
             changedValue <= 0;
-            i = 0;
-            j = 0;
         end 
         STRATEGY:begin
             if (symProbLength == 1) begin
