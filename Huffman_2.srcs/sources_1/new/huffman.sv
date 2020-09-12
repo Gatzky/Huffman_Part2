@@ -10,7 +10,7 @@ parameter bitInByte = 7;        // Number of bits in bytes decrement by one - th
 parameter charMaxValue = 255;   // Maximum value, which can be written on 8 bits
 parameter dataLength = 7;     // Length of data, decrement by one, which will be coded
 parameter INIT = 4'b0000, GET_DATA = 4'b0001, SORT_DATA = 4'b0010, SORT_PROB_SYM = 4'b0011, BUILD_INIT = 4'b0100, 
-          BUILD_STRATEGY = 4'b0101, BUILD_GEN_VAL = 4'b0110, BUILD_PUT_VAL =  4'b0111, ENCODE_DATA = 4'b1000, SEND_TREE = 4'b1001;
+          BUILD_GEN_VAL = 4'b0101, BUILD_PUT_VAL =  4'b0110, ENCODE_DATA = 4'b0111, SEND_TREE = 4'b1000;
 
 input clock;
 input reset;
@@ -125,7 +125,7 @@ always @ (posedge clock) begin
                     i <= 0;
                     j <= 0;
                     state <= SORT_PROB_SYM;
-                    Count <= 0; 
+                    Count <= 255; 
                 end     
             end
             
@@ -133,8 +133,8 @@ always @ (posedge clock) begin
                 if (i < dataLength) begin
                     if (j <= symProbLength) begin
                         if (tempProbabilityList[j] == i) begin    
-                            probabilityList[Count] <= i;
-                            symbolsList[Count] <= tempSymbolsList[j];
+                            probabilityList[symProbLength-1-Count] <= i;
+                            symbolsList[symProbLength-1-Count] <= tempSymbolsList[j];
                             Count = Count + 1;
                         end
                         j = j + 1;
@@ -145,7 +145,7 @@ always @ (posedge clock) begin
                     end
                 end
                 else begin
-                    state <= BUILD_STRATEGY;
+                    state <= BUILD_INIT;
                     i <= 0;
                     j <= 0;
                     Count <= 0;
@@ -153,16 +153,12 @@ always @ (posedge clock) begin
             end
             
             BUILD_INIT:begin
-                longestWord <= 1;
-                finishedWord <= 2;
-                shortestWordPos <= 255;
-                changedValue <= 0;
-                newValue <= 0;
-                state <= BUILD_STRATEGY;
-                i <= 0;
-            end
-            
-            BUILD_STRATEGY:begin
+                longestWord = 1;
+                finishedWord = 2;
+                shortestWordPos = 255;
+                changedValue = 0;
+                newValue = 0;
+                i = 0;
                 if (symProbLength == 1) begin
                     tempHuffman[0] <= 8'bZZZZZZZ0;
                     state <= ENCODE_DATA;
@@ -231,8 +227,8 @@ always @ (posedge clock) begin
             end
             
             ENCODE_DATA:begin
-                if(i < dataLength) begin
-                    if (j < symProbLength) begin
+                if(i <= dataLength) begin
+                    if (j <= symProbLength) begin
                         if (symbolsList[j] == receivedData[i]) begin
                             encodedData[i] <= huffmanList[j];
                         end
@@ -253,7 +249,7 @@ always @ (posedge clock) begin
             SEND_TREE:begin
                 if(i <= dataLength) begin
                     dataReady <= 1;
-                    outputData <= encodedData[i];;
+                    outputData <= encodedData[i];
                     i = i + 1;
                 end
                 else begin

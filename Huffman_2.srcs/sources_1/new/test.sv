@@ -24,8 +24,7 @@ module test(clock, symProbLength, inHuffmanList, outHuffmanList);
 
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
 parameter dataLength = 10;     // Length of data, decrement by one, which will be coded
-parameter INIT = 4'b0000, GET_DATA = 4'b0001, SORT_DATA = 4'b0010, SORT_PROB_SYM = 4'b0011, BUILD_INIT = 4'b0100, 
-          BUILD_STRATEGY = 4'b0101, BUILD_GEN_VAL = 4'b0110, BUILD_PUT_VAL =  4'b0111, ENCODE_DATA = 4'b1000, SEND_TREE = 4'b1001;
+parameter INIT = 3'b000, STRATEGY = 3'b001, GEN_VALUE = 3'b011, PUT_VALUE = 3'b100, END_STATE = 3'b101;
 
 integer i = 32'h0;	
 
