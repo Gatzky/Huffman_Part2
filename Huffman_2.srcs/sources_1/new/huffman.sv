@@ -9,7 +9,8 @@ module huffman(clock, reset, inputData, outputData, dataReady);
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
 parameter charMaxValue = 255;   // Maximum value, which can be written on 8 bits
 parameter dataLength = 7;     // Length of data, decrement by one, which will be coded
-parameter INIT = 3'b000, GET_DATA = 3'b001, SORT_DATA = 3'b010, SORT_PROB_SYM = 3'b011, BUILD_TREE =  3'b100, ENCODE_DATA = 3'b101, SEND_TREE = 3'b111;
+parameter INIT = 4'b0000, GET_DATA = 4'b0001, SORT_DATA = 4'b0010, SORT_PROB_SYM = 4'b0011, BUILD_INIT = 4'b0100, 
+          BUILD_STRATEGY = 4'b0101, BUILD_GEN_VAL = 4'b0110, BUILD_PUT_VAL =  4'b0111, ENCODE_DATA = 4'b1000, SEND_TREE = 4'b1001;
 
 input clock;
 input reset;
@@ -18,7 +19,7 @@ input [bitInByte:0] inputData;
 output reg [bitInByte:0] outputData;
 output reg dataReady;
 
-reg [2:0] state;
+reg [3:0] state;
 
 reg [bitInByte:0]tempProbabilityList[dataLength:0]; 
 reg [bitInByte:0]probabilityList[dataLength:0];
@@ -26,13 +27,22 @@ reg [bitInByte:0]tempSymbolsList[dataLength:0];
 reg [bitInByte:0]symbolsList[dataLength:0];
 
 reg [bitInByte:0]huffmanList[dataLength:0];		//List used to perform the algorithm on
+reg [bitInByte:0]tempHuffmanToShift[dataLength:0];
+reg [bitInByte:0]tempHuffman[dataLength:0];
+
 reg [bitInByte:0]encodedData[dataLength:0];		//List used to perform the algorithm on
 reg [bitInByte:0]receivedData[dataLength:0];		//List used to perform the algorithm on
 
+reg [bitInByte:0]tempData[dataLength:0];
+
 reg [bitInByte:0]flag;
 reg [bitInByte:0]Count;
-reg [bitInByte:0]tempData[dataLength:0];
 reg [bitInByte:0]symProbLength;
+reg [bitInByte:0]longestWord = 0;
+reg [bitInByte:0]finishedWord = 0;
+reg [bitInByte:0]shortestWordPos = 0;
+reg [bitInByte:0]changedValue = 0;
+reg [bitInByte:0]newValue = 0;
 
 //Loop variables
 integer i = 32'h0;	
@@ -59,11 +69,13 @@ always @ (posedge clock) begin
                     probabilityList[i] <= 'b0;
                     symbolsList[i] <= 'b0;
                     receivedData[i] <= 'b0;
-                    huffmanList[i] <= 'b0;
+                    huffmanList[i] <= 'bZZZZZZZZ;
+                    tempHuffmanToShift[i] <= 'bZZZZZZZZ;
+                    tempHuffman[i] <= 'bZZZZZZZZ;
                     tempData[i] <= 'b0;
                     encodedData[i] <= 'b0;
                 end
-                   
+                
                 i <= 0;                 
                 state <= GET_DATA;
             end
@@ -113,7 +125,7 @@ always @ (posedge clock) begin
                     i <= 0;
                     j <= 0;
                     state <= SORT_PROB_SYM;
-                    Count <= 0;
+                    Count <= 0; 
                 end     
             end
             
@@ -133,23 +145,88 @@ always @ (posedge clock) begin
                     end
                 end
                 else begin
-                    state <= BUILD_TREE;
+                    state <= BUILD_STRATEGY;
                     i <= 0;
                     j <= 0;
                     Count <= 0;
                 end
             end
             
-            BUILD_TREE:begin
-                if (i <= symProbLength) begin
-                    huffmanList[i] <= (8'b11111111 >> (dataLength - i)) - 1;
+            BUILD_INIT:begin
+                longestWord <= 1;
+                finishedWord <= 2;
+                shortestWordPos <= 255;
+                changedValue <= 0;
+                newValue <= 0;
+                state <= BUILD_STRATEGY;
+                i <= 0;
+            end
+            
+            BUILD_STRATEGY:begin
+                if (symProbLength == 1) begin
+                    tempHuffman[0] <= 8'bZZZZZZZ0;
+                    state <= ENCODE_DATA;
+                end
+                else if (symProbLength == 2) begin
+                    tempHuffman[0] <= 8'bZZZZZZZ0;
+                    tempHuffman[1] <= 8'bZZZZZZZ1;
+                    state <= ENCODE_DATA;
+                end
+                else begin
+                    tempHuffman[0] <= 8'bZZZZZZZ0;
+                    tempHuffman[1] <= 8'bZZZZZZZ1;
+                    state <= BUILD_GEN_VAL;
+                end
+            end
+            
+            BUILD_GEN_VAL:begin
+                if (i < finishedWord) begin
+                    if(tempHuffman[i][longestWord] === 1'bZ) begin
+                        shortestWordPos <= i;
+                        changedValue <= tempHuffman[i];
+                    end
                     i <= i + 1;
                 end
                 else begin
-                    i <= 0;
-                    huffmanList[symProbLength] <= huffmanList[symProbLength-1] + 1;
-                    huffmanList[0] <= 0;
-                    state <= ENCODE_DATA;
+                    if(shortestWordPos == 0) begin
+                        longestWord = longestWord + 1;
+                    end
+                    finishedWord = finishedWord + 1;
+                    changedValue = (changedValue << 1);
+                    newValue = changedValue;
+                    newValue[0] =  1'b1;
+                    state = BUILD_PUT_VAL;
+                    i = 0;
+                end
+            end
+            
+            BUILD_PUT_VAL:begin
+                if (i <= dataLength) begin
+                    if(i < shortestWordPos) begin
+                        tempHuffmanToShift[i] <= tempHuffman[i];
+                    end
+                    else if(i == shortestWordPos) begin
+                        tempHuffmanToShift[i] <= changedValue;
+                    end
+                    else if(i == (shortestWordPos + 1)) begin
+                        tempHuffmanToShift[i] <= newValue;
+                    end
+                    else if(i > (shortestWordPos + 1)) begin
+                        tempHuffmanToShift[i] <= tempHuffman[i-1];
+                    end
+                    i = i + 1;
+                end
+                else begin
+                    i = 0;
+                    shortestWordPos <= 0;
+                    if(finishedWord >= symProbLength) begin
+                        huffmanList <= tempHuffmanToShift;
+                        state = ENCODE_DATA;
+                    end
+                    else begin
+                        tempHuffman <= tempHuffmanToShift;
+                        state = BUILD_GEN_VAL;
+                    end
                 end
             end
             

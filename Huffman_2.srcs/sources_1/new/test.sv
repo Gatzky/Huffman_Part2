@@ -23,46 +23,39 @@
 module test(clock, symProbLength, inHuffmanList, outHuffmanList);
 
 parameter bitInByte = 7;        // Number of bits in bytes decrement by one - this simplification let miss phrase bIB -1 during array declaration
-parameter dataLength = 7;     // Length of data, decrement by one, which will be coded
-parameter INIT = 3'b000, STRATEGY = 3'b001, GEN_VALUE = 3'b010, PUT_VALUE = 3'b011, END_STATE =  3'b100;
-
+parameter dataLength = 10;     // Length of data, decrement by one, which will be coded
+parameter INIT = 4'b0000, GET_DATA = 4'b0001, SORT_DATA = 4'b0010, SORT_PROB_SYM = 4'b0011, BUILD_INIT = 4'b0100, 
+          BUILD_STRATEGY = 4'b0101, BUILD_GEN_VAL = 4'b0110, BUILD_PUT_VAL =  4'b0111, ENCODE_DATA = 4'b1000, SEND_TREE = 4'b1001;
 
 integer i = 32'h0;	
-integer j = 32'h0;
 
 input clock;
 input [bitInByte:0]symProbLength;
 
 input [bitInByte:0]inHuffmanList[dataLength:0];		//List used to perform the algorithm on
 output reg [bitInByte:0]outHuffmanList[dataLength:0];		//List used to perform the algorithm on
+
 reg [bitInByte:0]tempHuffmanList[dataLength:0];		//List used to perform the algorithm on
 reg [bitInByte:0]tempHuffmanList2[dataLength:0];		//List used to perform the algorithm on
 
-reg [bitInByte:0] endFlag = 0;
 reg [bitInByte:0] state = 0;
 reg [bitInByte:0] longestWord = 0;
 reg [bitInByte:0] finishedWord = 0;
 reg [bitInByte:0] shortestWordPos = 0;
 reg [bitInByte:0] changedValue = 0;
 reg [bitInByte:0] newValue = 0;
-reg test = 0;
-reg [bitInByte:0] value = 0;
-reg value_0 = 0;
-reg bool = 0;
 
 always @ (posedge clock) begin
     case(state)
         INIT:begin
             tempHuffmanList <= inHuffmanList;
+            tempHuffmanList2 <= inHuffmanList;
+            state <= STRATEGY;
             longestWord <= 1;
             finishedWord <= 2;
             shortestWordPos <= 255;
-            state <= STRATEGY;
             changedValue <= 0;
-            test <= 0;
-            value <= 0;
-            value_0 <= 0;
-            bool <= 0;
+            newValue <= 0;
         end 
         STRATEGY:begin
             if (symProbLength == 1) begin
@@ -82,13 +75,9 @@ always @ (posedge clock) begin
         end
         GEN_VALUE:begin
             if (i < finishedWord) begin
-                value = tempHuffmanList[i];
-                value_0 = tempHuffmanList[i][longestWord];
-                bool = (tempHuffmanList[i][longestWord] === 1'bZ);
                 if(tempHuffmanList[i][longestWord] === 1'bZ) begin
                     shortestWordPos <= i;
                     changedValue <= tempHuffmanList[i];
-                    test <= ~test;
                 end
                 i <= i + 1;
             end
