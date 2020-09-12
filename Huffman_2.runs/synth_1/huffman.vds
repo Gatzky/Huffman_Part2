@@ -1,0 +1,427 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sat Sep 12 12:17:59 2020
+# Process ID: 6176
+# Current directory: C:/Gac/Projekty/Huffman_Part2/Huffman_2.runs/synth_1
+# Command line: vivado.exe -log huffman.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source huffman.tcl
+# Log file: C:/Gac/Projekty/Huffman_Part2/Huffman_2.runs/synth_1/huffman.vds
+# Journal file: C:/Gac/Projekty/Huffman_Part2/Huffman_2.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source huffman.tcl -notrace
+Command: synth_design -top huffman -part xc7z020clg484-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 2240 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 563.141 ; gain = 184.398
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'huffman' [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:7]
+	Parameter bitInByte bound to: 7 - type: integer 
+	Parameter charMaxValue bound to: 255 - type: integer 
+	Parameter dataLength bound to: 7 - type: integer 
+	Parameter INIT bound to: 4'b0000 
+	Parameter GET_DATA bound to: 4'b0001 
+	Parameter SORT_DATA bound to: 4'b0010 
+	Parameter SORT_PROB_SYM bound to: 4'b0011 
+	Parameter BUILD_INIT bound to: 4'b0100 
+	Parameter BUILD_GEN_VAL bound to: 4'b0101 
+	Parameter BUILD_PUT_VAL bound to: 4'b0110 
+	Parameter ENCODE_DATA bound to: 4'b0111 
+	Parameter SEND_TREE bound to: 4'b1000 
+WARNING: [Synth 8-6090] variable 'i' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:76]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:54]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[7] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[6] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[5] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[4] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[3] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[2] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[1] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element probabilityList_reg[0] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:66]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[7] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[6] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[5] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[4] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[3] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[2] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[1] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element tempData_reg[0] was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:72]
+WARNING: [Synth 8-6014] Unused sequential element huffmanLongestWord_reg was removed.  [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:153]
+INFO: [Synth 8-6155] done synthesizing module 'huffman' (1#1) [C:/Gac/Projekty/Huffman_Part2/Huffman_2.srcs/sources_1/new/huffman.sv:7]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 626.582 ; gain = 247.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 626.582 ; gain = 247.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 626.582 ; gain = 247.840
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'huffman'
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    INIT |                             0000 |                             0000
+                GET_DATA |                             0001 |                             0001
+               SORT_DATA |                             0010 |                             0010
+           SORT_PROB_SYM |                             0011 |                             0011
+              BUILD_INIT |                             0100 |                             0100
+           BUILD_GEN_VAL |                             0101 |                             0101
+           BUILD_PUT_VAL |                             0110 |                             0110
+             ENCODE_DATA |                             0111 |                             0111
+               SEND_TREE |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'huffman'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 666.551 ; gain = 287.809
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 6     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                8 Bit    Registers := 48    
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 10    
+	   9 Input     32 Bit        Muxes := 4     
+	   2 Input      8 Bit        Muxes := 16    
+	   9 Input      8 Bit        Muxes := 20    
+	   9 Input      4 Bit        Muxes := 1     
+	   3 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 66    
+	   3 Input      1 Bit        Muxes := 1     
+	   9 Input      1 Bit        Muxes := 65    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module huffman 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     32 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 6     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                8 Bit    Registers := 48    
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 10    
+	   9 Input     32 Bit        Muxes := 4     
+	   2 Input      8 Bit        Muxes := 16    
+	   9 Input      8 Bit        Muxes := 20    
+	   9 Input      4 Bit        Muxes := 1     
+	   3 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 66    
+	   3 Input      1 Bit        Muxes := 1     
+	   9 Input      1 Bit        Muxes := 65    
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanChangedValue_reg[0] )
+INFO: [Synth 8-3886] merging instance 'i_454' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_470' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_486' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_502' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_518' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_437' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_453' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_469' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_485' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_501' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_517' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[1]i_533' (FDE) to 'tempHuffman_reg[1]i_528'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[0]i_550' (FDE) to 'tempHuffman_reg[0]i_545'
+INFO: [Synth 8-3886] merging instance 'i_436' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_452' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_468' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_484' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_500' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_516' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[1]i_532' (FDE) to 'tempHuffman_reg[1]i_528'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[0]i_549' (FDE) to 'tempHuffman_reg[0]i_545'
+INFO: [Synth 8-3886] merging instance 'i_435' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_451' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_467' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_483' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_499' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_515' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[1]i_531' (FDE) to 'tempHuffman_reg[1]i_528'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[0]i_548' (FDE) to 'tempHuffman_reg[0]i_545'
+INFO: [Synth 8-3886] merging instance 'i_434' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_450' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_466' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_482' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_498' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_514' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[1]i_530' (FDE) to 'tempHuffman_reg[1]i_528'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[0]i_547' (FDE) to 'tempHuffman_reg[0]i_545'
+INFO: [Synth 8-3886] merging instance 'i_433' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_449' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_465' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_481' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_497' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_513' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[1]i_529' (FDE) to 'tempHuffman_reg[1]i_528'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[0]i_546' (FDE) to 'tempHuffman_reg[0]i_545'
+INFO: [Synth 8-3886] merging instance 'i_432' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_448' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_464' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_480' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_496' (FDE) to 'i_512'
+INFO: [Synth 8-3886] merging instance 'i_512' (FDE) to 'i_431'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[1]i_528' (FDE) to 'tempHuffman_reg[1]i_527'
+INFO: [Synth 8-3886] merging instance 'tempHuffman_reg[0]i_545' (FDE) to 'tempHuffman_reg[0]i_544'
+INFO: [Synth 8-3886] merging instance 'i_431' (FDE) to 'i_430'
+INFO: [Synth 8-3886] merging instance 'i_447' (FDE) to 'i_430'
+INFO: [Synth 8-3886] merging instance 'i_463' (FDE) to 'i_430'
+INFO: [Synth 8-3886] merging instance 'i_479' (FDE) to 'i_430'
+INFO: [Synth 8-3886] merging instance 'i_495' (FDE) to 'i_430'
+INFO: [Synth 8-3886] merging instance 'i_511' (FDE) to 'i_430'
+INFO: [Synth 8-3886] merging instance 'huffmanShortestWordPos_reg[0]' (FDE) to 'huffmanShortestWordPos_reg[7]'
+INFO: [Synth 8-3886] merging instance 'huffmanShortestWordPos_reg[1]' (FDE) to 'huffmanShortestWordPos_reg[7]'
+INFO: [Synth 8-3886] merging instance 'huffmanShortestWordPos_reg[2]' (FDE) to 'huffmanShortestWordPos_reg[7]'
+INFO: [Synth 8-3886] merging instance 'huffmanShortestWordPos_reg[3]' (FDE) to 'huffmanShortestWordPos_reg[7]'
+INFO: [Synth 8-3886] merging instance 'huffmanShortestWordPos_reg[4]' (FDE) to 'huffmanShortestWordPos_reg[7]'
+INFO: [Synth 8-3886] merging instance 'huffmanShortestWordPos_reg[5]' (FDE) to 'huffmanShortestWordPos_reg[7]'
+INFO: [Synth 8-3886] merging instance 'huffmanShortestWordPos_reg[6]' (FDE) to 'huffmanShortestWordPos_reg[7]'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[7]i_568' (FDE) to 'tempHuffmanToShift_reg[7]i_562'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[6]i_585' (FDE) to 'tempHuffmanToShift_reg[6]i_579'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[5]i_602' (FDE) to 'tempHuffmanToShift_reg[5]i_596'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[4]i_619' (FDE) to 'tempHuffmanToShift_reg[4]i_613'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[3]i_636' (FDE) to 'tempHuffmanToShift_reg[3]i_630'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[2]i_653' (FDE) to 'tempHuffmanToShift_reg[2]i_647'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[1]i_273' (FDE) to 'tempHuffmanToShift_reg[1]i_267'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[0]i_291' (FDE) to 'tempHuffmanToShift_reg[0]i_285'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[7]i_567' (FDE) to 'tempHuffmanToShift_reg[7]i_562'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[6]i_584' (FDE) to 'tempHuffmanToShift_reg[6]i_579'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[5]i_601' (FDE) to 'tempHuffmanToShift_reg[5]i_596'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[4]i_618' (FDE) to 'tempHuffmanToShift_reg[4]i_613'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[3]i_635' (FDE) to 'tempHuffmanToShift_reg[3]i_630'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[2]i_652' (FDE) to 'tempHuffmanToShift_reg[2]i_647'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[1]i_272' (FDE) to 'tempHuffmanToShift_reg[1]i_267'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[0]i_290' (FDE) to 'tempHuffmanToShift_reg[0]i_285'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[7]i_566' (FDE) to 'tempHuffmanToShift_reg[7]i_562'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[6]i_583' (FDE) to 'tempHuffmanToShift_reg[6]i_579'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[5]i_600' (FDE) to 'tempHuffmanToShift_reg[5]i_596'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[4]i_617' (FDE) to 'tempHuffmanToShift_reg[4]i_613'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[3]i_634' (FDE) to 'tempHuffmanToShift_reg[3]i_630'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[2]i_651' (FDE) to 'tempHuffmanToShift_reg[2]i_647'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[1]i_271' (FDE) to 'tempHuffmanToShift_reg[1]i_267'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[0]i_289' (FDE) to 'tempHuffmanToShift_reg[0]i_285'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[7]i_565' (FDE) to 'tempHuffmanToShift_reg[7]i_562'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[6]i_582' (FDE) to 'tempHuffmanToShift_reg[6]i_579'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[5]i_599' (FDE) to 'tempHuffmanToShift_reg[5]i_596'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[4]i_616' (FDE) to 'tempHuffmanToShift_reg[4]i_613'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[3]i_633' (FDE) to 'tempHuffmanToShift_reg[3]i_630'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[2]i_650' (FDE) to 'tempHuffmanToShift_reg[2]i_647'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[1]i_270' (FDE) to 'tempHuffmanToShift_reg[1]i_267'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[0]i_288' (FDE) to 'tempHuffmanToShift_reg[0]i_285'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[7]i_564' (FDE) to 'tempHuffmanToShift_reg[7]i_562'
+INFO: [Synth 8-3886] merging instance 'tempHuffmanToShift_reg[6]i_581' (FDE) to 'tempHuffmanToShift_reg[6]i_579'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanNewValue_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanNewValue_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanNewValue_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanNewValue_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanNewValue_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanNewValue_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\huffmanNewValue_reg[7] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:15 . Memory (MB): peak = 865.840 ; gain = 487.098
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:15 . Memory (MB): peak = 866.664 ; gain = 487.922
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |    67|
+|3     |LUT2   |   371|
+|4     |LUT3   |    89|
+|5     |LUT4   |   116|
+|6     |LUT5   |    83|
+|7     |LUT6   |   295|
+|8     |MUXF7  |    72|
+|9     |FDRE   |   630|
+|10    |IBUF   |    10|
+|11    |OBUF   |     9|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |  1743|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 18 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 866.852 ; gain = 488.109
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 139 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'huffman' is not ideal for floorplanning, since the cellview 'huffman' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 923.504 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+124 Infos, 19 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 923.504 ; gain = 568.605
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 923.504 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Gac/Projekty/Huffman_Part2/Huffman_2.runs/synth_1/huffman.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file huffman_utilization_synth.rpt -pb huffman_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 12 12:18:29 2020...

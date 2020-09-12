@@ -19,32 +19,29 @@ input [bitInByte:0] inputData;
 output reg [bitInByte:0] outputData;
 output reg dataReady;
 
-reg [3:0] state;
-
 reg [bitInByte:0]tempProbabilityList[dataLength:0]; 
 reg [bitInByte:0]probabilityList[dataLength:0];
 reg [bitInByte:0]tempSymbolsList[dataLength:0];
 reg [bitInByte:0]symbolsList[dataLength:0];
 
-reg [bitInByte:0]huffmanList[dataLength:0];		//List used to perform the algorithm on
+reg [bitInByte:0]huffmanList[dataLength:0];
 reg [bitInByte:0]tempHuffmanToShift[dataLength:0];
 reg [bitInByte:0]tempHuffman[dataLength:0];
 
-reg [bitInByte:0]encodedData[dataLength:0];		//List used to perform the algorithm on
-reg [bitInByte:0]receivedData[dataLength:0];		//List used to perform the algorithm on
-
+reg [bitInByte:0]encodedData[dataLength:0];
+reg [bitInByte:0]receivedData[dataLength:0];
 reg [bitInByte:0]tempData[dataLength:0];
 
+reg [3:0] state;
 reg [bitInByte:0]flag;
-reg [bitInByte:0]Count;
-reg [bitInByte:0]symProbLength;
-reg [bitInByte:0]longestWord = 0;
-reg [bitInByte:0]finishedWord = 0;
-reg [bitInByte:0]shortestWordPos = 0;
-reg [bitInByte:0]changedValue = 0;
-reg [bitInByte:0]newValue = 0;
+reg [bitInByte:0]count;
+reg [bitInByte:0]differentSymbolsNumber; 
+reg [bitInByte:0]huffmanLongestWord;
+reg [bitInByte:0]huffmanFinishedWords;
+reg [bitInByte:0]huffmanShortestWordPos;
+reg [bitInByte:0]huffmanChangedValue;
+reg [bitInByte:0]huffmanNewValue;
 
-//Loop variables
 integer i = 32'h0;	
 integer j = 32'h0;
 
@@ -59,8 +56,8 @@ always @ (posedge clock) begin
                 
                 flag <= 0;
                 dataReady <= 0;
-                Count <= 0;
-                symProbLength <= 255;
+                count <= 0;
+                differentSymbolsNumber <= 255;
                 outputData <= 0;
     
                 for(i=0;i<=dataLength;i=i+1) begin
@@ -101,17 +98,17 @@ always @ (posedge clock) begin
                 if (i < charMaxValue) begin
                     if (j <= dataLength) begin
                         if (receivedData[j] == i) begin
-                            if (tempSymbolsList[symProbLength] == i) begin
-                                tempProbabilityList[symProbLength] = tempProbabilityList[symProbLength] + 1;
+                            if (tempSymbolsList[differentSymbolsNumber] == i) begin
+                                tempProbabilityList[differentSymbolsNumber] = tempProbabilityList[differentSymbolsNumber] + 1;
                             end
                             else begin
-                                symProbLength = symProbLength + 1;
-                                tempSymbolsList[symProbLength] = i;
-                                tempProbabilityList[symProbLength] = 1;
+                                differentSymbolsNumber = differentSymbolsNumber + 1;
+                                tempSymbolsList[differentSymbolsNumber] = i;
+                                tempProbabilityList[differentSymbolsNumber] = 1;
                             end
                                     
-                            tempData[Count] <= i;
-                            Count = Count + 1;
+                            tempData[count] <= i;
+                            count = count + 1;
                         end
                         j = j + 1;
                     end
@@ -121,21 +118,21 @@ always @ (posedge clock) begin
                     end
                 end
                 else begin
-                    symProbLength = symProbLength + 1;
+                    differentSymbolsNumber = differentSymbolsNumber + 1;
                     i <= 0;
                     j <= 0;
                     state <= SORT_PROB_SYM;
-                    Count <= 255; 
+                    count <= 255; 
                 end     
             end
             
             SORT_PROB_SYM:begin
                 if (i < dataLength) begin
-                    if (j <= symProbLength) begin
+                    if (j <= differentSymbolsNumber) begin
                         if (tempProbabilityList[j] == i) begin    
-                            probabilityList[symProbLength-1-Count] <= i;
-                            symbolsList[symProbLength-1-Count] <= tempSymbolsList[j];
-                            Count = Count + 1;
+                            probabilityList[differentSymbolsNumber-1-count] <= i;
+                            symbolsList[differentSymbolsNumber-1-count] <= tempSymbolsList[j];
+                            count = count + 1;
                         end
                         j = j + 1;
                     end
@@ -148,22 +145,22 @@ always @ (posedge clock) begin
                     state <= BUILD_INIT;
                     i <= 0;
                     j <= 0;
-                    Count <= 0;
+                    count <= 0;
                 end
             end
             
             BUILD_INIT:begin
-                longestWord = 1;
-                finishedWord = 2;
-                shortestWordPos = 255;
-                changedValue = 0;
-                newValue = 0;
+                huffmanLongestWord = 1;
+                huffmanFinishedWords = 2;
+                huffmanShortestWordPos = 255;
+                huffmanChangedValue = 0;
+                huffmanNewValue = 0;
                 i = 0;
-                if (symProbLength == 1) begin
+                if (differentSymbolsNumber == 1) begin
                     tempHuffman[0] <= 8'bZZZZZZZ0;
                     state <= ENCODE_DATA;
                 end
-                else if (symProbLength == 2) begin
+                else if (differentSymbolsNumber == 2) begin
                     tempHuffman[0] <= 8'bZZZZZZZ0;
                     tempHuffman[1] <= 8'bZZZZZZZ1;
                     state <= ENCODE_DATA;
@@ -176,21 +173,21 @@ always @ (posedge clock) begin
             end
             
             BUILD_GEN_VAL:begin
-                if (i < finishedWord) begin
-                    if(tempHuffman[i][longestWord] === 1'bZ) begin
-                        shortestWordPos <= i;
-                        changedValue <= tempHuffman[i];
+                if (i < huffmanFinishedWords) begin
+                    if(tempHuffman[i][huffmanLongestWord] === 1'bZ) begin
+                        huffmanShortestWordPos <= i;
+                        huffmanChangedValue <= tempHuffman[i];
                     end
                     i <= i + 1;
                 end
                 else begin
-                    if(shortestWordPos == 0) begin
-                        longestWord = longestWord + 1;
+                    if(huffmanShortestWordPos == 0) begin
+                        huffmanLongestWord = huffmanLongestWord + 1;
                     end
-                    finishedWord = finishedWord + 1;
-                    changedValue = (changedValue << 1);
-                    newValue = changedValue;
-                    newValue[0] =  1'b1;
+                    huffmanFinishedWords = huffmanFinishedWords + 1;
+                    huffmanChangedValue = (huffmanChangedValue << 1);
+                    huffmanNewValue = huffmanChangedValue;
+                    huffmanNewValue[0] =  1'b1;
                     state = BUILD_PUT_VAL;
                     i = 0;
                 end
@@ -198,24 +195,24 @@ always @ (posedge clock) begin
             
             BUILD_PUT_VAL:begin
                 if (i <= dataLength) begin
-                    if(i < shortestWordPos) begin
+                    if(i < huffmanShortestWordPos) begin
                         tempHuffmanToShift[i] <= tempHuffman[i];
                     end
-                    else if(i == shortestWordPos) begin
-                        tempHuffmanToShift[i] <= changedValue;
+                    else if(i == huffmanShortestWordPos) begin
+                        tempHuffmanToShift[i] <= huffmanChangedValue;
                     end
-                    else if(i == (shortestWordPos + 1)) begin
-                        tempHuffmanToShift[i] <= newValue;
+                    else if(i == (huffmanShortestWordPos + 1)) begin
+                        tempHuffmanToShift[i] <= huffmanNewValue;
                     end
-                    else if(i > (shortestWordPos + 1)) begin
+                    else if(i > (huffmanShortestWordPos + 1)) begin
                         tempHuffmanToShift[i] <= tempHuffman[i-1];
                     end
                     i = i + 1;
                 end
                 else begin
                     i = 0;
-                    shortestWordPos <= 0;
-                    if(finishedWord >= symProbLength) begin
+                    huffmanShortestWordPos <= 0;
+                    if(huffmanFinishedWords >= differentSymbolsNumber) begin
                         huffmanList <= tempHuffmanToShift;
                         state = ENCODE_DATA;
                     end
@@ -228,7 +225,7 @@ always @ (posedge clock) begin
             
             ENCODE_DATA:begin
                 if(i <= dataLength) begin
-                    if (j <= symProbLength) begin
+                    if (j <= differentSymbolsNumber) begin
                         if (symbolsList[j] == receivedData[i]) begin
                             encodedData[i] <= huffmanList[j];
                         end
